@@ -3,7 +3,5 @@
 .RData
 .Ruserdata
 
-# This pipeline specific files/dirs to ignore
-_targets/*
-*/out/*
+# Specific files/dirs to ignore for this pipeline
 */tmp/*
