@@ -2,3 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# This pipeline specific files/dirs to ignore
+_targets/*
+*/out/*
+*/tmp/*

@@ -1,4 +1,4 @@
-map_sites <- function(site_info, out_file) {
+map_sites <- function(out_file, site_info) {
   state_polys <- urbnmapr::get_urbn_map(map = "territories_states", sf = FALSE) %>%
     filter(state_abbv %in% site_info$state_cd)
 
