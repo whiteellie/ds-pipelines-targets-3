@@ -35,4 +35,5 @@ map_sites <- function(out_file, site_info) {
     ggsave(out_file, plot=conus, width=5, height=4)
   }
 
+  return(out_file)
 }
