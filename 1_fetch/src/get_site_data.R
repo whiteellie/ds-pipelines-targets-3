@@ -5,6 +5,7 @@ get_site_data <- function(sites_info, state, parameter) {
   message(sprintf('  Retrieving data for %s-%s', site_info$state_cd, site_info$site_no))
 
   # simulate an unreliable web service or internet connection by causing random failures
+  set.seed(Sys.time()) # Make sure that the seed changes with every run (targets likes to store the seed)
   if(runif(1) < 0.5) {
     Sys.sleep(2)
     stop('Ugh, the internet data transfer failed! Try again.')
