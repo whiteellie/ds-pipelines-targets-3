@@ -4,8 +4,15 @@ find_oldest_site <- function(state, parameter) {
     parameterCd=parameter, stateCd=state, hasDataType='dv', agencyCd='USGS',
     siteType='ST', siteStatus='active',
     startDt=format(Sys.Date()-as.difftime(7, units='days'), '%Y-%m-%d'),
-    endDt=format(Sys.Date()-as.difftime(1, units='days'), '%Y-%m-%d')) %>%
-    as_tibble()
+    endDt=format(Sys.Date()-as.difftime(1, units='days'), '%Y-%m-%d'))
+
+  # Remove attributes that include query times, otherwise `targets` will think it changed
+  # when it rebuilds when a new state is added since the inventory builds all states again
+  # using `find_oldest_sites()`
+  attr(sites, "comment") <- NULL
+  attr(sites, "queryTime") <- NULL
+  attr(sites, "headerInfo") <- NULL
+
   best_site <- sites %>%
     filter(stat_cd == '00003', data_type_cd == 'dv') %>%
     filter(count_nu == max(count_nu)) %>%
