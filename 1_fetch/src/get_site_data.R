@@ -16,15 +16,15 @@ get_site_data <- function(sites_info, state, parameter) {
     siteNumbers=site_info$site_no, parameterCd=parameter) %>%
     dataRetrieval::renameNWISColumns(p00010="Value", p00060="Value", p00300="Value") %>%
     as_tibble()
-  # do special handling for some sites with unusally-named value columns
+  # do special handling for some sites with unusually-named value columns
   if(!('Value_cd' %in% names(site_data))) {
     if(parameter == '00010') {
       site_data <- switch(
         site_info$site_no[1],
         '01646500' = site_data %>%
           mutate(
-            Value = `7.1.ft.from.riverbed..top._Value`,
-            Value_cd = `7.1.ft.from.riverbed..top._Value_cd`
+            Value = `7.1.ft.from.riverbed..top....Discontinued._Value`,
+            Value_cd = `7.1.ft.from.riverbed..top....Discontinued._Value_cd`
           ),
         '01389005' = site_data %>%
           mutate(
