@@ -19,9 +19,9 @@ list(
   tar_target(oldest_active_sites, find_oldest_sites(states, parameter)),
 
   # TODO: PULL SITE DATA HERE
-  tar_target(wi_data, get_site_data(oldest_active_sites[1], states[1], parameter)),
-  tar_target(mn_data, get_site_data(oldest_active_sites[2], states[2], parameter)),
-  tar_target(mi_data, get_site_data(oldest_active_sites[3], states[3], parameter)),
+  tar_target(wi_data, get_site_data(oldest_active_sites, states[1], parameter)),
+  tar_target(mn_data, get_site_data(oldest_active_sites, states[2], parameter)),
+  tar_target(mi_data, get_site_data(oldest_active_sites, states[3], parameter)),
 
   # Map oldest sites
   tar_target(
