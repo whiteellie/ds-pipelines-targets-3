@@ -28,9 +28,9 @@ list(
   # Static branching
   tar_map(
     values = tibble(state_abb = states),
-    tar_target(nwis_data, get_site_data(oldest_active_sites, state_abb, parameter)),
-    tar_target(count, tally(nwis_data)),
-    tar_target(fig, plot(count))
+    tar_target(nwis_data, get_site_data(oldest_active_sites, state_abb, parameter))
+    # tar_target(count, tally(nwis_data)),
+    # tar_target(fig, plot(count))
   ),
 
   # Map oldest sites
