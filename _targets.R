@@ -12,7 +12,7 @@ source("1_fetch/src/get_site_data.R")
 source("3_visualize/src/map_sites.R")
 
 # Configuration
-states <- c('WI','MN','MI', 'IL')
+states <- c('WI','MN','MI', 'IL', 'IN', 'IA')
 parameter <- c('00060')
 
 # Targets
@@ -25,10 +25,11 @@ list(
   # tar_target(mn_data, get_site_data(oldest_active_sites, states[2], parameter)),
   # tar_target(mi_data, get_site_data(oldest_active_sites, states[3], parameter)),
 
-  # Static branching
+  # Static branching with splitting
   tar_map(
     values = tibble(state_abb = states),
-    tar_target(nwis_data, get_site_data(oldest_active_sites, state_abb, parameter))
+    tar_target(nwis_inventory, get_state_inventory(sites_info = oldest_active_sites, state_abb)),
+    tar_target(nwis_data, get_site_data(nwis_inventory, state_abb, parameter))
     # tar_target(count, tally(nwis_data)),
     # tar_target(fig, plot(count))
   ),
