@@ -34,7 +34,7 @@ list(
     tar_target(nwis_inventory, get_state_inventory(sites_info = oldest_active_sites, state_abb)),
     tar_target(nwis_data, get_site_data(nwis_inventory, state_abb, parameter)),
     tar_target(tally, tally_site_obs(nwis_data)),
-    tar_target(timeseries_png, plot_site_data(state_plot_files, nwis_data, parameter)),
+    tar_target(timeseries_png, plot_site_data(state_plot_files, nwis_data, parameter), format = "file"),
     names = state_abb
     ),
 
