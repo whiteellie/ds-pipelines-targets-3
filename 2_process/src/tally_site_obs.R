@@ -1,7 +1,6 @@
 # Compute number of observations per year
 # packages: lubridate, tidyverse
 tally_site_obs <- function(site_data) {
-  browser()
   message(sprintf('  Tallying data for %s-%s', site_data$State[1], site_data$Site[1]))
   site_data %>%
     mutate(Year = year(Date)) %>%
