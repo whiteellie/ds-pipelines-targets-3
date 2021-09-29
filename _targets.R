@@ -4,7 +4,7 @@ library(tibble)
 library(dplyr)
 
 options(tidyverse.quiet = TRUE)
-tar_option_set(packages = c("tidyverse", "dataRetrieval", "urbnmapr", "rnaturalearth", "cowplot", "lubridate", "leaflet", "leafpop", "htmlwidgets"))
+tar_option_set(packages = c("tidyverse", "dataRetrieval", "urbnmapr", "rnaturalearth", "cowplot", "lubridate", "leaflet", "leafpop", "htmlwidgets", "dplyr"))
 
 # Load functions needed by targets below
 source("1_fetch/src/find_oldest_sites.R")
@@ -42,12 +42,12 @@ list(
   mapped_by_state_targets,
 
   # combine tally_[state], the third target in tar_map
-  tar_combine(obs_tallies, mapped_by_state_targets[3], command = combine_obs_tallies(!!!.x)),
+  tar_combine(obs_tallies, mapped_by_state_targets$tally, command = combine_obs_tallies(!!!.x)),
 
   # combiner meant to summarize
   tar_combine(
     summary_state_timeseries_csv,
-    mapped_by_state_targets[4],
+    mapped_by_state_targets$timeseries_png,
     command = summarize_targets('3_visualize/log/summary_state_timeseries.csv', !!!.x),
     format="file"
   ),
