@@ -18,22 +18,14 @@ source("2_process/src/summarize_targets.R")
 source("3_visualize/src/map_timeseries.R")
 
 # Configuration
-states <- c('WI', 'MN', 'MI')
-          # c('AL','AZ','AR','CA','CO','CT','DE','DC','FL','GA','ID','IL','IN','IA',
-          # 'KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH',
-          # 'NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX',
-          # 'UT','VT','VA','WA','WV','WI','WY','AK','HI','GU','PR')
+# states <- c('WI', 'MN', 'MI')
+states <- c('AL','AZ','AR','CA','CO','CT','DE','DC','FL','GA','ID','IL','IN','IA',
+          'KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH',
+          'NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX',
+          'UT','VT','VA','WA','WV','WI','WY','AK','HI','GU','PR')
 parameter <- c('00060')
 
 # Targets
-# mapped_by_state_targets <- tar_map(
-#   values = tibble(state_abb = states)%>%
-#     mutate(state_plot_files = ),
-#
-#   names = state_abb,
-#   unlist = FALSE
-# )
-
 list(
   # Identify oldest sites
   tar_target(oldest_active_sites, find_oldest_sites(states, parameter)),
@@ -65,7 +57,7 @@ list(
   # combiner meant to summarize
   tar_target(
     summary_state_timeseries_csv,
-    command = summarize_targets('3_visualize/log/summary_state_timeseries.csv', timeseries_png),
+    command = summarize_targets('3_visualize/log/summary_state_timeseries.csv', vec=names(timeseries_png)),
     format="file"
   ),
 

@@ -10,8 +10,9 @@ tally_site_obs <- function(site_data) {
     summarize(NumObs = length(which(!is.na(Value))), .groups = "keep")
 }
 
-combine_obs_tallies <- function(...){
-  # vctrs::vec_c(...) # don't use this, this is for vectors
-  dplyr::bind_rows(...)
-  # do.call("rbind", ...)
-}
+# not needed for dynamic branching
+# combine_obs_tallies <- function(...){
+#   # vctrs::vec_c(...) # don't use this, this is for vectors
+#   dplyr::bind_rows(...)
+#   # do.call("rbind", ...)
+# }

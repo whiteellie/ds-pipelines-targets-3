@@ -43,8 +43,8 @@ get_site_data <- function(site_info, state, parameter) {
   return(site_data_final)
 }
 
-# for splitting
-get_state_inventory <- function(sites_info, state) {
-  site_info <- dplyr::filter(sites_info, state_cd == state)
-}
+# # for splitting, not needed for dynamic branching
+# get_state_inventory <- function(sites_info, state) {
+#   site_info <- dplyr::filter(sites_info, state_cd == state)
+# }
 
