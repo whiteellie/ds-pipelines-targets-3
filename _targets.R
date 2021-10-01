@@ -39,7 +39,7 @@ list(
              iteration = "group"), # since we grouped we don't need to branch by lists
 
   tar_target(nwis_data,
-             retry(get_site_data(site_info=nwis_inventory, state=nwis_inventory$state_cd, parameter=parameter), when="Ugh, the internet data transfer failed!"),
+             retry(get_site_data(site_info=nwis_inventory, state=nwis_inventory$state_cd, parameter=parameter), when="Ugh, the internet data transfer failed!", max_tries=30),
              pattern = map(nwis_inventory)), # pattern turns it into dynamic branching
 
   tar_target(tally,
